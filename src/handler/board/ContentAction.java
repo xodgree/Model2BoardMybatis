@@ -5,7 +5,8 @@ import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import board.BoardDBBean;
+
+import board.BoardDBMybatis;
 import board.BoardDataBean;
 import controller.CommandHandler;
 
@@ -23,7 +24,7 @@ public class ContentAction implements CommandHandler{
 			pageNum = "1";	}
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		try{
-			BoardDBBean dbPro = BoardDBBean.getInstance();
+			BoardDBMybatis dbPro = BoardDBMybatis.getInstance();
 			BoardDataBean article = dbPro.getArticle(num, boardid, "content");
 			int ref = article.getRef();
 			int re_step = article.getRe_step();

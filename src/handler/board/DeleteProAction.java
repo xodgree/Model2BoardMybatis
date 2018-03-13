@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board.BoardDBBean;
+import board.BoardDBMybatis;
 import controller.CommandHandler;
 
 public class DeleteProAction implements CommandHandler{
@@ -20,7 +21,7 @@ public class DeleteProAction implements CommandHandler{
 
 		int num = Integer.parseInt(req.getParameter("num")); //deleteForm 에서 넘어온 데이터
 		String passwd = req.getParameter("passwd");
-		BoardDBBean dbPro = BoardDBBean.getInstance();
+		BoardDBMybatis dbPro = BoardDBMybatis.getInstance();
 		int check = dbPro.deleteArticle(num, passwd, boardid);
 		req.setAttribute("check", check);
 		req.setAttribute("num", num);

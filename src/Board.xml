@@ -43,4 +43,24 @@
          ref,re_step,re_level,content,ip,boardid, filename, filesize)
          values(#{num},#{writer},#{email},#{subject},#{passwd},sysdate,#{ref},#{re_step},#{re_level},#{content},#{ip},#{boardid},#{filename},#{filesize})
 	</insert>
+	
+	
+	   
+	   <update id="addReadCount" parameterType="hashmap">
+	   	update board set readcount = readcount+1 
+	   	where num = #{num} and boardid = #{boardid}
+	   </update>
+	   
+	   <select id="getArticle" parameterType="hashmap" resultType="Board">
+	 select * from board where num = #{num} and boardid = #{boardid}
+	   </select>
+	   
+	   <!--dml(delete update )는 resultType쓰면 안됨.  -->   
+	 <update id="updateArticle" parameterType="Board">
+	update board set writer=#{writer},email=#{email},subject=#{subject},content=#{content} where num=#{num} and passwd=#{passwd}
+	</update>
+	
+	<delete id="deleteArticle" parameterType="hashmap">
+	 delete from board where num = #{num} and passwd = #{passwd}
+	</delete>
 </mapper>

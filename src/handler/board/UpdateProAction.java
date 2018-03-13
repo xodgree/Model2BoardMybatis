@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board.BoardDBBean;
+import board.BoardDBMybatis;
 import board.BoardDataBean;
 import controller.CommandHandler;
 
@@ -30,7 +31,7 @@ public class UpdateProAction implements CommandHandler{
         article.setBoardid(req.getParameter("boardid"));
         article.setIp(req.getRemoteAddr());   
 		System.out.println(article); 
-		BoardDBBean dbPro = BoardDBBean.getInstance();
+		BoardDBMybatis dbPro = BoardDBMybatis.getInstance();
 		   
 		   int chk = dbPro.updateArticle(article);
 		   req.setAttribute("chk", chk);
